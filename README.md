@@ -1,5 +1,5 @@
 <p align="center">
-    <h1> Problem Solving</h1>
+     Problem Solving
 </p>
 
   <p align="center">
