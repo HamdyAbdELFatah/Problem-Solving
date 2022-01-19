@@ -1,0 +1,52 @@
+import java.util.*
+fun main() {
+    val s = Scanner(System.`in`)
+    val n=s.nextInt()
+    val arr= IntArray(n)
+    var l=0
+    var r=0
+    var c=0
+    var tl=0
+    var tr=0
+    var f=0
+    arr[0] = s.nextInt()
+    l= arr[0]
+    for(i in 1 until n) {
+        arr[i] = s.nextInt()
+        if(arr[i-1]>arr[i]){
+            if(c==0) {
+                r = arr[i-1]
+                l= arr[i]
+                tr=i-1
+                tl=i
+            }else if(c>=1&&f==0)
+                if(l>arr[i]){
+                    l=arr[i]
+                    tl=i
+                }else{
+                    f=1
+                }
+            c=i
+        }else if (r>0)
+            f=1
+    }
+
+    if(r==0)
+        print("yes \n${tr+1} ${tl+1}")
+    else {
+        if(tl<n-1)
+            if(r>arr[tl+1]||c!=tl)
+                print("no")
+            else
+                print("yes \n${tr+1} ${tl+1}")
+        else{
+             if(tr>0)
+                 if(l<arr[tr-1])
+                    print("no")
+                 else
+                     print("yes \n${tr+1} ${tl+1}")
+            else
+                print("yes \n${tr+1} ${tl+1}")
+        }
+    }
+}

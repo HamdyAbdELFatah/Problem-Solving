@@ -1,0 +1,10 @@
+import java.util.*
+fun main() {
+    val s = Scanner(System.`in`)
+    val a=s.nextLong()
+    val b=s.nextLong();
+    if(a%2==0L)
+        println(if(b-a<=1L||a+2>b)-1 else "$a ${a+1} ${a+2}")
+    else
+        println(if(b-a<=1L||a+3>b)-1 else "${a+1} ${a+2} ${a+3}")
+}

@@ -1,0 +1,71 @@
+import java.io.*
+import java.util.*
+import kotlin.math.abs
+
+//============================================================================
+// Author      : Hamdy Abd El Fattah
+// Code is like humor. When you have to explain it, it’s bad.
+//============================================================================
+
+fun main() {
+    val scanner = FastScanner(System.`in`)
+    val n = scanner.nextInt()
+    val d = scanner.nextInt()
+    var i = 0
+    var j = 2
+    val arr = Array(n) { 0 }
+    for (index in 0 until n)
+        arr[index] = scanner.nextInt()
+
+    var g = 0L
+    var c = 0L
+    while (j < n) {
+        if (j - i < 2) {
+            j++
+            continue
+        }
+        if (abs(arr[i] - arr[j]) <= d) {
+            c++
+            if (j == n - 1) {
+                g += getNumberGroup(c)
+                i++
+                c -= 2
+            } else
+                j++
+        } else {
+            if (j-i==2 && abs(arr[i] - arr[j]) <= d) {
+                g += getNumberGroup(c)
+            }else if(j-i>2){
+                g += getNumberGroup(c)
+                c--
+            }
+            i++
+        }
+    }
+    println(g)
+}
+
+
+fun getNumberGroup(n: Long): Long {
+    var result = 0L
+    result += (n * (n + 1) / 2)
+    return result
+}
+
+
+class FastScanner(stream: InputStream) {
+    var br: BufferedReader = BufferedReader(InputStreamReader(stream))
+    var st: StringTokenizer? = null
+    fun next(): String {
+        while (st == null || !st!!.hasMoreTokens()) {
+            try {
+                st = StringTokenizer(br.readLine())
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+        return st!!.nextToken()
+    }
+
+    fun nextInt() = next().toInt()
+}

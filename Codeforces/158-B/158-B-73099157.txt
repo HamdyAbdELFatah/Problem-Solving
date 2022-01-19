@@ -1,0 +1,35 @@
+import java.util.*
+import kotlin.math.ceil
+fun main() {
+    val s = Scanner(System.`in`)
+    val n=s.nextInt()
+    var c=0
+    var one=0; var two=0; var three=0; var four=0
+    for(i in 0 until n) {
+        val x = s.nextInt()
+        when (x) {
+            1 -> one++
+            2 -> two++
+            3 -> three++
+            else -> four++
+        }
+    }
+    when {
+        three>one -> {
+            three -= one
+            c+=one
+            one=0
+        }
+        three<one -> {
+            one -= three
+            c+=three
+            three=0
+        }
+        else -> {
+            c+=one
+            one=0
+            three=0
+        }
+    }
+    print(c+four+three+ceil(((one+(two*2))/4.0)).toInt())
+}
